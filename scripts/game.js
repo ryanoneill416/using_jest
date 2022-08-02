@@ -19,6 +19,13 @@ function addTurn() {
     // showTurns();
 }
 
+function lightsOn(circ) {
+    document.getElementById(circ).classList.add("light");
+    setTimeout(() => {
+        document.getElementById(circ).classList.remove("light");
+    }, 400);
+}
+
 let showScore = () => document.getElementById("score").innerText = game.score;
 
-module.exports = { game, newGame, showScore, addTurn };
+module.exports = { game, newGame, showScore, addTurn, lightsOn };
