@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require("../game");
+const { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn } = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -84,7 +84,12 @@ describe("gameplay works correctly", () => {
     test("expect data listener to be true", () => {
         const elements = document.getElementsByClassName("circle");
         for (let element of elements) {
-            expect(element.getAttribute("data-listener")).toBe(true);
+            expect(element.getAttribute("data-listener")).toBe("true");
         }
+    });
+    test("should increment the score if the turn is correct", () => {
+        game.playerMoves.push(game.currentGame[0]);
+        playerTurn();
+        expect(game.score).toBe(1);
     });
 })
